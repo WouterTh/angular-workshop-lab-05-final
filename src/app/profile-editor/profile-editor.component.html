@@ -1,0 +1,70 @@
+<h1>Edit Profile</h1>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput [formControl]="getControl('firstName')">
+    </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput [formControl]="getControl('lastName')">
+    </mat-form-field>
+</div>
+
+<h2>Address</h2>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Street + Number</mat-label>
+        <input matInput [formControl]="getControl('address.street')">
+    </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Zip</mat-label>
+        <input matInput [formControl]="getControl('address.zip')">
+    </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <input matInput [formControl]="getControl('address.city')">
+    </mat-form-field>
+</div>
+
+<h2>Aliases</h2>
+
+<div>
+    <button mat-button color="primary" (click)="addAlias()">
+        Add another alias
+    </button>
+</div>
+
+<div *ngFor="let alias of aliases.controls; let i = index">
+    <mat-form-field appearance="fill">
+        <mat-label>Alias</mat-label>
+        <input matInput [formControl]="getControl('aliases.' + i)">
+    </mat-form-field>
+    <button mat-button (click)="removeAlias(i)">Remove</button>
+</div>
+
+<div>
+    <button mat-raised-button color="primary" [disabled]="profileForm.invalid">
+        Update Profile
+    </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<div>
+    Form Value: {{profileForm.value | json}}
+</div>
+
+<div>
+    Form Status: {{profileForm.status}}
+</div>
